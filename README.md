@@ -40,9 +40,11 @@ callBackFunction:
 The name of an optional callback function. (Note: if you don't want to use a callback function add '' here)
 
 
+Reload Image:
+To add the reload functionality just call createCaptcha function again after an event.
 
-8. To add the reload functionality just call createCaptcha function again after an event.
-9. To check the value the user inputted matchs the captcha use:
+Check value:
+To check the value the user inputted matchs the captcha use:
 
          checkCaptcha(pathToCheckCreateImagePhp, coptchaName, userInputId, callBackFunction)
          

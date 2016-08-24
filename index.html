@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Captcha Image</title>
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- JS JQUERY-->
+    <script src="js/jquery.js"></script>
+
+    <!-- JS ADD COLOR INPUT BOX -->
+    <script src="js/capthcaImage.js"></script>
+
+    <!-- JS CUSTOM -->
+    <script>
+        //CREATE CAPTCHA CALLBACK FUNCTION
+        function createCaptchaCallbackFunction(){
+            //DO SOME AWESOME STUFF HERE
+            $('#info').text('Type the number you see above.');
+        }
+
+        //CHECK CAPTCHA CALLBACK FUNCTION
+        function checkCaptchaCallbackFunction(){
+            $('#info').text('Its a match!..');
+        }
+
+        $(document).ready(function(){
+            createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
+
+            $('#newBtn').click(function(){
+                createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
+            });
+
+            $('#checkBtn').click(function(){
+                checkCaptcha('php/http/createCheckCaptchaSession.php', 'captcha', 'userInput', checkCaptchaCallbackFunction);
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div id="captchaImageArea"></div>
+<input type="text" id="userInput">
+<input type="button" value="New Image" id="newBtn"><input type="button" value="Check" id="checkBtn"><br>
+<p id="info">Type the number you see above.</p>
+</body>
+</html>

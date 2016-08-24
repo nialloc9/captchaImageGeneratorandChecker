@@ -1,0 +1,20 @@
+#newBtn {
+    margin-left: 25px;
+    background-color: black;
+    color: white;
+    width: 130px;
+    height: 40px;
+}
+
+#checkBtn{
+    margin-left: 25px;
+    background-color: darkblue;
+    color: white;
+    width: 130px;
+    height: 40px;
+}
+
+/* NEW CAPTCHA IMAGE STYLING */
+.captchaImageClass{
+    width: 200px;
+}

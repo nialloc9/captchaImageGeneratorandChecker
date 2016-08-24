@@ -13,6 +13,8 @@ It is designed to be reusable and simple to use. Include the files and check out
   
         createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, pathToCheckCreateCaptchaSession, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction)
 
+
+
 captchaAreaId:
 The id of the div the image will appear in.
 
@@ -36,6 +38,8 @@ The name of the class that holds the styling for the image.
 
 callBackFunction: 
 The name of an optional callback function. (Note: if you don't want to use a callback function add '' here)
+
+
 
 8. To add the reload functionality just call createCaptcha function again after an event.
 9. To check the value the user inputted matchs the captcha use:

@@ -9,7 +9,7 @@ It is designed to be reusable and simple to use. Include the files and check out
 4. Give the form that needs captcha image a div with an id of your choice.
 5. Give the button to check and to get a new image an id of your choice.
 6. Give the input the user will use an id of your choice.
-7. If you want to change the name of the session from the default 'captcha' go to the createImage.php file and change the name of the session to a differant name. (for example if you had a page with 2 differant capthca images).
+7. If you want to change the name of the session from the default 'captcha' go to the createImage.php file and change the variable $name to a differant name. (for example if you had a page with 2 differant capthca images).
 8. When the page loads call the function below and give relevant values:
   
         createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, pathToCheckCreateCaptchaSession, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction)

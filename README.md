@@ -5,11 +5,12 @@ It is designed to be reusable and simple to use. Include the files and check out
 # Instructions
 1. Make sure jQuery is available to use in your project.
 2. Include the js/captchaImage.js file in your project.
-3. Read the code in teh script tags in index.html. This how we use the functionality.
-4. Give the form that needs csrf protection a div with an id of your choice.
+3. Read the code in the script tags in index.html. This how we use the functionality.
+4. Give the form that needs captcha image a div with an id of your choice.
 5. Give the button to check and to get a new image an id of your choice.
 6. Give the input the user will use an id of your choice.
-7. When the page loads call the function below and give relevant values:
+7. If you want to change the name of the session from the default 'captcha' go to the createImage.php file and change the name of the session to a differant name. (for example if you had a page with 2 differant capthca images).
+8. When the page loads call the function below and give relevant values:
   
         createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, pathToCheckCreateCaptchaSession, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction)
 
@@ -22,7 +23,7 @@ captchaNumberInputId:
 The id of the input the user will use.
 
 captchaSessionName:
-The name you want to call your captcha session(this must match the name of the session you check).
+The name you want to call your captcha session(this must match the name of the session you check). Each time we create a new capthca with a differant name we have to create another instance of the CreateImagePhp file and change the variable $name to the one we will call our capthca session.
 
 pathToCheckCreateCaptchaSession: 
 The path to where you put the file 'CreateCheckCaptchaSession.php' (this path is from the file want the image to appear)

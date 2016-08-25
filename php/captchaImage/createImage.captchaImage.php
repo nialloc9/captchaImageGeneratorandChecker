@@ -1,11 +1,13 @@
 <?php
 session_start();
 
+$name = 'captcha';
+
 //SET CONTENT AS IMAGE
 header('Content-type: image/jpeg');
 
 //GET SESSION VALUE
-$text = $_SESSION['captcha'];
+$text = $_SESSION[$name];
 
 //SET IMAGE PROPERTIES
 $font_size = 30;

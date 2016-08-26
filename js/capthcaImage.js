@@ -58,7 +58,6 @@ function checkCaptchaCallback(callBackfunction){
     if(callBackfunction != ''){
         callBackfunction();
     }
-    return true;
 }
 
 //CHECK CAPTCHA SESSION

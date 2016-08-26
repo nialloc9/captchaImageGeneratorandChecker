@@ -17,12 +17,13 @@
     <script>
         //CREATE CAPTCHA CALLBACK FUNCTION
         function createCaptchaCallbackFunction(){
-            //DO SOME AWESOME STUFF HERE
+            //DO SOME AWESOME STUFF HERE LIKE GENERATING A CSRF TOKEN.. csrfGeneratorChecker available here: https://github.com/nialloc9/csrfProtection
             $('#info').text('Type the number you see above.');
         }
 
         //CHECK CAPTCHA CALLBACK FUNCTION
         function checkCaptchaCallbackFunction(){
+            //DO SOME AWESOME STUFF HERE LIKE CHECKING ALL INPUTS ARE FILLED IN... inputChecker available here: https://github.com/nialloc9/inputChecker
             $('#info').text('Its a match!..');
         }
 

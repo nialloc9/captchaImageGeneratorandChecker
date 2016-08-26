@@ -7,7 +7,7 @@ session_start();
 function generateCaptchaSession($name){
     //DELETE PREVIOUS SESSION
     if(isset($_SESSION[$name]) || empty($_SESSION[$name])){
-        session_unset($name);
+        unset($_SESSION[$name]);
     }
 
     //SESSION CHECK

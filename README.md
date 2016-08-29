@@ -9,8 +9,9 @@ It is designed to be reusable and simple to use. Include the files and check out
 4. Give the form that needs captcha image a div with an id of your choice.
 5. Give the button to check and to get a new image an id of your choice.
 6. Give the input the user will use an id of your choice.
-7. If you want to change the name of the session from the default 'captcha' go to the createImage.php file and change the variable $name to a differant name. (for example if you had a page with 2 differant capthca images).
-8. When the page loads call the function below and give relevant values:
+7. Create 2 callback functions to pass as arguements.
+8. If you want to change the name of the session from the default 'captcha' go to the createImage.php file and change the variable $name to a differant name. (for example if you had a page with 2 differant capthca images).
+9. When the page loads call the function below and give relevant values:
   
         createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, pathToCheckCreateCaptchaSession, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction)
 
@@ -38,7 +39,7 @@ newCaptchaImageClass:
 The name of the class that holds the styling for the image.
 
 callBackFunction: 
-The name of an optional callback function. (Note: if you don't want to use a callback function add '' here)
+The name of an callback function to handle the boolean data value returned.
 
 
 8. Reload Image:
@@ -59,60 +60,46 @@ userInputId:
 The id of the input the user will use to enter the number.
 
 callBackFunction:
-The name of an optional callback function. (Note: if you don't want to use a callback function add '' here);
+The name of an callback function to handle the boolean data value returned.
 
     
 
 # Example
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <title>Captcha Image</title>
+            //CREATE CAPTCHA CALLBACK FUNCTION
+            function createCaptchaCallbackFunction(data){
 
-    <!-- CSS STYLES -->
-    <link rel="stylesheet" href="css/styles.css">
+                //DO SOME AWESOME STUFF HERE LIKE GENERATING A CSRF TOKEN.. csrfGeneratorChecker available here: https://github.com/nialloc9/csrfProtection
 
-    <!-- JS JQUERY-->
-    <script src="js/jquery.js"></script>
+                //data booleon check
+                if(data){
+                    $('#info').text('Type the number you see above.');
+                }
+            }
 
-    <!-- JS ADD COLOR INPUT BOX -->
-    <script src="js/capthcaImage.js"></script>
 
-    <!-- JS CUSTOM -->
-    <script>
-        //CREATE CAPTCHA CALLBACK FUNCTION
-        function createCaptchaCallbackFunction(){
-            //DO SOME AWESOME STUFF HERE
-            $('#info').text('Type the number you see above.');
-        }
+            //CHECK CAPTCHA CALLBACK FUNCTION
+            function checkCaptchaCallbackFunction(data){ //data = true if user input is correct
+                //DO SOME AWESOME STUFF HERE LIKE CHECKING ALL INPUTS ARE FILLED IN... inputChecker available here: https://github.com/nialloc9/inputChecker
 
-        //CHECK CAPTCHA CALLBACK FUNCTION
-        function checkCaptchaCallbackFunction(){
-            $('#info').text('Its a match!..');
-        }
+                //data booleon check
+                if(data){
+                    $('#info').text('Its a match!..');
+                }else{
+                    $('#info').text('Please write the correct number.');
+                }
+            }
 
-        $(document).ready(function(){
-            createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
-
-            $('#newBtn').click(function(){
+            $(document).ready(function(){
                 createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
-            });
 
-            $('#checkBtn').click(function(){
-                checkCaptcha('php/http/createCheckCaptchaSession.php', 'captcha', 'userInput', checkCaptchaCallbackFunction);
-            });
-        });
-        </script>
+                $('#newBtn').click(function(){
+                    createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
+                });
 
-         </head>
-        <body>
-          <div id="captchaImageArea"></div>
-            <input type="text" id="userInput">
-            <input type="button" value="New Image" id="newBtn"><input type="button" value="Check" id="checkBtn"><br>
-            <p id="info">Type the number you see above.</p>
-        </body>
-      </html>
+                $('#checkBtn').click(function(){
+                    checkCaptcha('php/http/createCheckCaptchaSession.php', 'captcha', 'userInput', checkCaptchaCallbackFunction);
+                });
+            });
         
 # NB
 If you use this for production remove the console.log() statements from the js file.

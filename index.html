@@ -16,15 +16,27 @@
     <!-- JS CUSTOM -->
     <script>
         //CREATE CAPTCHA CALLBACK FUNCTION
-        function createCaptchaCallbackFunction(){
+        function createCaptchaCallbackFunction(data){
+
             //DO SOME AWESOME STUFF HERE LIKE GENERATING A CSRF TOKEN.. csrfGeneratorChecker available here: https://github.com/nialloc9/csrfProtection
-            $('#info').text('Type the number you see above.');
+
+            //data booleon check
+            if(data){
+                $('#info').text('Type the number you see above.');
+            }
         }
 
+
         //CHECK CAPTCHA CALLBACK FUNCTION
-        function checkCaptchaCallbackFunction(){
+        function checkCaptchaCallbackFunction(data){ //data = true if user input is correct
             //DO SOME AWESOME STUFF HERE LIKE CHECKING ALL INPUTS ARE FILLED IN... inputChecker available here: https://github.com/nialloc9/inputChecker
-            $('#info').text('Its a match!..');
+
+            //data booleon check
+            if(data){
+                $('#info').text('Its a match!..');
+            }else{
+                $('#info').text('Please write the correct number.');
+            }
         }
 
         $(document).ready(function(){
@@ -39,8 +51,6 @@
             });
         });
     </script>
-
-
 </head>
 <body>
 <div id="captchaImageArea"></div>

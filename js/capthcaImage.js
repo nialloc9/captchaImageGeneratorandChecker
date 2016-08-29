@@ -1,16 +1,16 @@
 /**
- * Created by Niall on 24/08/2016.
+ * Created by Niall on 25/08/2016.
  */
 
-                //...................GENERATE....................
+//...................GENERATE....................
 
 //CREATE CAPTCHA FUNCTION
 function createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, pathToCheckCreateCaptchaSession, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction){
 
-    //ASSIGN VARIABLES
+    //assign variable
     var areaId = '#' + captchaAreaId;
 
-    //HTTP REQUEST
+    //http request
     $.get(
         pathToCheckCreateCaptchaSession,
         {
@@ -22,49 +22,45 @@ function createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, 
             console.log('ERROR: createCaptha() http request failure in createCapthcaImage.http.js');
         }).
         success(function(data){
+
+            //assign variable
+            var result = false;
+
             if(data > 0){
                 console.log('SUCCESS: captcha value ' + data +' found. Creating capthca session..');
-                addCaptcha(captchaAreaId, captchaNumberInputId, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction);
+                addCaptcha(captchaAreaId, captchaNumberInputId, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass);
+
+                result = true;
             }else{
                 console.log('ERROR: creating capthca session');
+            }
+
+            //callback function
+            if(callBackFunction != ''){
+                callBackFunction(result);
             }
         });
 }
 
 //ADD IMAGE TO ELEMENT
-function addCaptcha(captchaAreaId, captchaNumberInputId, pathToCheckCreateImagePhp, newCaptchaImageId, newCaptchaImageClass, callBackFunction){
-    //ASSIGN VARIABLES
+function addCaptcha(captchaAreaId, captchaNumberInputId, pathToCheckCreateImagePhp, newCaptchaImageId, newCaptchaImageClass){
+
+    //assign variables
     var areaId = '#' + captchaAreaId;
     var inputArea = '#' + captchaNumberInputId;
 
-    //ADD IMAGE
+    //add image
     $(areaId).html('<img src="' + pathToCheckCreateImagePhp + '?' + (new Date().getTime()) +'" alt="security code" id="'+ newCaptchaImageId +'" class="'+ newCaptchaImageClass +'" width="50%"/>');
 
-    //CLEAR INPUT
+    //clear input
     $(inputArea).val('');
-
-    //DEVELOPER CALL BACK FUNCTION
-    if(callBackFunction != ''){
-        callBackFunction();
-    }
-}
-
-                //...................CHECK....................
-
-//CHECK CAPTCHA CALLBACK FUNCTION(not developer)
-function checkCaptchaCallback(callBackfunction){
-
-    //DEVELOPER CALLBACK FUNCTION
-    if(callBackfunction != ''){
-        callBackfunction();
-    }
 }
 
 //CHECK CAPTCHA SESSION
 function checkCaptcha(pathToCheckCreateImagePhp, coptchaName, userInputId, callBackFunction){
-    //ASSIGN VARIABLES
-    var id = '#' + userInputId;
 
+    //assign variables
+    var id = '#' + userInputId;
     var userVal = $(id).val();
 
     $.get(
@@ -79,13 +75,24 @@ function checkCaptcha(pathToCheckCreateImagePhp, coptchaName, userInputId, callB
             console.log('ERROR: checking capthca session');
         }).
         success(function(data){
+            //assign variable
+            var result = false;
+
             console.log('SUCCESS: checking capthca session.. returned: ' + data);
-            //DATA CHECK
+
+            //data check
             if(data > 0){
                 console.log("SUCCESS: Captcha session and user data match.");
-                checkCaptchaCallback(callBackFunction);
+
+                //change result
+                result = true;
             }else{
                 console.log("ERROR: Captcha session and user data do not match.");
+            }
+
+            //callback function
+            if(callBackFunction != ''){
+                callBackFunction(result);
             }
         });
 }

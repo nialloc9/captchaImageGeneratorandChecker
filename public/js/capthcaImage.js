@@ -26,7 +26,7 @@ function createCaptcha(captchaAreaId, captchaNumberInputId, captchaSessionName, 
             //assign variable
             var result = false;
 
-            if(data > 0){
+            if(data == 1){
                 console.log('SUCCESS: captcha value ' + data +' found. Creating capthca session..');
                 addCaptcha(captchaAreaId, captchaNumberInputId, pathToCreateImagePhp, newCaptchaImageId, newCaptchaImageClass);
 
@@ -81,7 +81,7 @@ function checkCaptcha(pathToCheckCreateImagePhp, coptchaName, userInputId, callB
             console.log('SUCCESS: checking capthca session.. returned: ' + data);
 
             //data check
-            if(data > 0){
+            if(data == 1){
                 console.log("SUCCESS: Captcha session and user data match.");
 
                 //change result

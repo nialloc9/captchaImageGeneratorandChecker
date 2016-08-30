@@ -5,52 +5,16 @@
     <title>Captcha Image</title>
 
     <!-- CSS STYLES -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="public/css/styles.css">
 
     <!-- JS JQUERY-->
-    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="public/js/jquery.js"></script>
 
     <!-- JS ADD COLOR INPUT BOX -->
-    <script src="js/capthcaImage.js"></script>
+    <script type="text/javascript" src="public/js/capthcaImage.js"></script>
 
     <!-- JS CUSTOM -->
-    <script>
-        //CREATE CAPTCHA CALLBACK FUNCTION
-        function createCaptchaCallbackFunction(result){ //result = true if captcha created successfully
-
-            //DO SOME AWESOME STUFF HERE LIKE GENERATING A CSRF TOKEN.. csrfGeneratorChecker available here: https://github.com/nialloc9/csrfProtection
-
-            //result booleon check
-            if(result){
-                $('#info').text('Type the number you see above.');
-            }
-        }
-
-
-        //CHECK CAPTCHA CALLBACK FUNCTION
-        function checkCaptchaCallbackFunction(result){ //result = true if user input is correct
-            //DO SOME AWESOME STUFF HERE LIKE CHECKING ALL INPUTS ARE FILLED IN... inputChecker available here: https://github.com/nialloc9/inputChecker
-
-            //result booleon check
-            if(result){
-                $('#info').text('Its a match!..');
-            }else{
-                $('#info').text('Please write the correct number.');
-            }
-        }
-
-        $(document).ready(function(){
-            createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
-
-            $('#newBtn').click(function(){
-                createCaptcha('captchaImageArea', 'userInput', 'captcha', 'php/http/createCheckCaptchaSession.php', 'php/captchaImage/createImage.captchaImage.php', 'myNewCaptchaImage', 'captchaImageClass', createCaptchaCallbackFunction);
-            });
-
-            $('#checkBtn').click(function(){
-                checkCaptcha('php/http/createCheckCaptchaSession.php', 'captcha', 'userInput', checkCaptchaCallbackFunction);
-            });
-        });
-    </script>
+    <script type="text/javascript" src="public/js/index.js"></script>
 </head>
 <body>
 <div id="captchaImageArea"></div>

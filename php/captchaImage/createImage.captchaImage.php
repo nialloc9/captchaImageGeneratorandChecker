@@ -3,26 +3,26 @@ session_start();
 
 $name = 'captcha';
 
-//SET CONTENT AS IMAGE
+//set content as image
 header('Content-type: image/jpeg');
 
-//GET SESSION VALUE
+//get session variable
 $text = $_SESSION[$name];
 
-//SET IMAGE PROPERTIES
+//set image properties
 $font_size = 30;
 
 $image_width = 110;
 $image_height= 40;
 
-//CREATE IMAGE
+//create image
 $image = imagecreate($image_width, $image_height);
 imagecolorallocate($image, 255, 255, 255);
 
-//SET COLOR TEXT
+//set text color
 $text_color = imagecolorallocate($image, 0, 0, 0);
 
-//SET IMAGE LINES
+//set image lines
 for($x=1; $x<=30; $x++){
     $x1 = rand(1, 100);
     $y1 = rand(1, 100);
@@ -33,10 +33,10 @@ for($x=1; $x<=30; $x++){
 }
 
 
-//SET IMAGE TEXT
+//set image text
 imagettftext($image, $font_size, 0 , 15, 30, $text_color, 'captchaFont.ttf', $text);
 
-//CREATE JPEG
+//create jpeg
 imagejpeg($image);
 
 ?>

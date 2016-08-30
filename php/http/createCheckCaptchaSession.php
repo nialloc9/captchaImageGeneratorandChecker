@@ -5,34 +5,38 @@ session_start();
 
 //GENERATE FUNCTION
 function generateCaptchaSession($name){
-    //DELETE PREVIOUS SESSION
+
+    //assign variables
+    $result = 0;
+    //delete previous session
     if(isset($_SESSION[$name]) || empty($_SESSION[$name])){
         unset($_SESSION[$name]);
     }
 
-    //SESSION CHECK
+    //session check
         if(!isset($_SESSION[$name])){
-            //CREATE SESSION
+
+            //create session
             $_SESSION[$name] = rand(1000,9999);
 
-            //RETURN VALUE
-            echo $_SESSION[$name];
-        }else{
-            //RETURN VALUE
-            echo $_SESSION[$name];
+            //re-assign $result variable
+            $result = 1;
         }
+
+    echo $result;
 }
 
 
 //TASK CHECK.. createCapthcaSession
 if(isset($_GET['task']) && $_GET['task'] == 'createCapthcaSession'){
 
-    //CHECK NAME
+    //check name
     if(isset($_GET['name']) && !empty($_GET['name'])){
 
-        //ASSING VARIABLES
+        //assing more variables
         $name = $_GET['name'];
-        //GENERATE
+
+        //generate
         generateCaptchaSession($name);
     }
 
@@ -51,16 +55,17 @@ function checkCaptchaSession($userCaptchaInput, $name){
 
 //TASK CHECK.. checkCaptchaSession
 if(isset($_GET['task']) && $_GET['task'] == 'checkCaptchaSession'){
-    //DATA CHECK
+
+    //data check
     if(isset($_GET['userInput']) && !empty($_GET['userInput'])){
 
         if(isset($_GET['name']) && !empty($_GET['name'])){
 
-            //ASSIGN VARIABLES
+            //assign variables
             $userInput = $_GET['userInput'];
             $name = $_GET['name'];
 
-            //PASS DATA TO FUNCTION
+            //pass data to function
             checkCaptchaSession($userInput, $name);
 
         }

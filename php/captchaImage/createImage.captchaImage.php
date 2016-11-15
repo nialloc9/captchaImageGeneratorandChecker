@@ -39,4 +39,6 @@ imagettftext($image, $font_size, 0 , 15, 30, $text_color, 'captchaFont.ttf', $te
 //create jpeg
 imagejpeg($image);
 
+//free up memory
+imagedestroy($image);
 ?>

@@ -96,3 +96,5 @@ function checkCaptcha(pathToCheckCreateImagePhp, coptchaName, userInputId, callB
             }
         });
 }
+
+
